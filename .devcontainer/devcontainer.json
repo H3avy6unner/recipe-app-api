@@ -46,7 +46,8 @@
 					"-p",
 					"*test*.py"
 				],
-				"python.testing.cwd": "${workspaceFolder}/app"
+				"python.testing.cwd": "${workspaceFolder}/app",
+				"pythonIndent.trimLinesWithOnlyWhitespace": true
 			},
 
 			"extensions": [
