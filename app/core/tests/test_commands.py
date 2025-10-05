@@ -12,7 +12,7 @@ from django.test import SimpleTestCase
 
 
 # Decorater für die erstellte Funktion "wait_for_db" => Erbt aus BaseCommand die check-method
-@patch('core.managment.commands.wait_for_db.Command.check')
+@patch('core.management.commands.wait_for_db.Command.check')
 class CommandTests(SimpleTestCase):
     '''Test commands.'''
 
@@ -22,6 +22,7 @@ class CommandTests(SimpleTestCase):
 
         call_command('wait_for_db')
 
-        patched_check.assert_called_once_witch(database=['default'])
+        patched_check.assert_called_once_with(database=['default'])
         
     def test_wait_for_db_delay(self, patched_check):
+        pass

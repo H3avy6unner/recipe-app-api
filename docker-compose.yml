@@ -4,7 +4,7 @@ services:
   app:
     build: .
     volumes:
-      - .:/workspace:cached
+      - .:/recipe-app-api:cached
     ports:
       - "8000:8000"
     command: sh -c "python manage.py runserver"

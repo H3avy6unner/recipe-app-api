@@ -15,7 +15,7 @@ COPY ./requirements.txt /tmp/requirements.txt
 COPY ./app /app
 
 # Install Python dependencies
-RUN apk add --no-cache build-base postgresql-dev libpq && \
+RUN apk add --no-cache bash build-base postgresql-dev libpq && \
     python -m venv /py && \
     /py/bin/pip install --no-cache --upgrade pip && \
     /py/bin/pip install --no-cache -r /tmp/requirements.txt && \

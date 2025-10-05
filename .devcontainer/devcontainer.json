@@ -4,7 +4,7 @@
 	"name": "Django API Dev",
 	"dockerComposeFile": "../docker-compose.yml",
 	"service": "app",
-	"workspaceFolder": "/workspace",
+	"workspaceFolder": "/recipe-app-api",
 	"overrideCommand": true,
 
 
@@ -43,11 +43,10 @@
 				"python.testing.unittestEnabled": true,
 				"python.testing.pytestEnabled": false,
 				"python.testing.unittestArgs": [
-					"-s",
-					"${workspaceFolder}/app",
 					"-p",
 					"*test*.py"
-				]
+				],
+				"python.testing.cwd": "${workspaceFolder}/app"
 			},
 
 			"extensions": [
