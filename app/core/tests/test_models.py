@@ -1,8 +1,15 @@
 """
 Tests for models.
 """
+from decimal import Decimal
 from django.test import TestCase
 from django.contrib.auth import get_user_model
+from core import models
+
+
+def create_user(email="test@example.com", password="TestPass1234"):
+    """Helper function for creating a user"""
+    return get_user_model().objects.create(email=email, password=password)
 
 
 class ModelTests(TestCase):
@@ -46,3 +53,28 @@ class ModelTests(TestCase):
 
         self.assertEqual(user.is_superuser, True)
         self.assertEqual(user.is_staff, True)
+
+    def test_create_recipe(self):
+        """Test Create new recipe"""
+        user = get_user_model().objects.create(
+            email="test@example.com",
+            password="Testtest88",
+            name="Test Name",
+        )
+
+        recipe = models.Recipe(
+            user=user,
+            title="Simple Recipe Name",
+            time_minutes=5,
+            price=Decimal(5.50),
+            description="Hier steht Werbung",
+        )
+
+        self.assertEqual(str(recipe), recipe.title)
+
+    def test_create_tag(self):
+        """Test Create a tag is successfull"""
+        user = create_user()
+        tag = models.Tag.objects.create(user=user, name="TestTag1")
+
+        self.assertEqual(str(tag), tag.name)
