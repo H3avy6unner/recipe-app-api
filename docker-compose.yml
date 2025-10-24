@@ -5,6 +5,7 @@ services:
     build: .
     volumes:
       - .:/recipe-app-api:cached
+      - dev-static-data:/vol/web
     ports:
       - "8000:8000"
     command: >
@@ -40,3 +41,4 @@ services:
 
 volumes:
   dev-db-data:
+  dev-static-data:

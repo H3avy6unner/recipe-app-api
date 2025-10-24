@@ -15,15 +15,21 @@ COPY ./requirements.txt /tmp/requirements.txt
 COPY ./app /app
 
 # Install Python dependencies
-RUN apk add --no-cache bash build-base postgresql-dev libpq && \
+RUN apk add --no-cache bash postgresql-client jpeg-dev libpq && \
+    apk add --no-cache --virtual .tmp-build-deps \
+        build-base postgresql-dev musl-dev zlib zlib-dev && \
     python -m venv /py && \
     /py/bin/pip install --no-cache --upgrade pip && \
     /py/bin/pip install --no-cache -r /tmp/requirements.txt && \
     rm -rf /tmp/* && \
-    apk del build-base postgresql-dev && \
+    apk del .tmp-build-deps && \
     adduser \
         --disabled-password \
-        django-user
+        django-user && \
+    mkdir -p /vol/web/media && \
+    mkdir -p /vol/web/static && \
+    chown -P django-user:django-user /vol && \
+    chmod -R 755 /vol 
 
 # Activate venv as default
 ENV PATH="/py/bin:$PATH"
