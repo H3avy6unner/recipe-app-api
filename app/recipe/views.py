@@ -1,6 +1,13 @@
 """
 Views for recipe APIs
 """
+from drf_spectacular.utils import (
+    extend_schema,
+    extend_schema_view,
+    OpenApiParameter,
+    OpenApiTypes,
+)
+
 from rest_framework import viewsets, mixins, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -32,7 +39,7 @@ class RecipeViewset(viewsets.ModelViewSet):
         """Return the serializer class for request"""
         if self.action == "list":
             return RecipeSerializer
-        elif self.action == "upload-image":
+        elif self.action == "upload_image":
             return RecipeImageSerializer
         return self.serializer_class
 

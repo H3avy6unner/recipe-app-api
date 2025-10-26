@@ -64,7 +64,7 @@ class ModelTests(TestCase):
             name="Test Name",
         )
 
-        recipe = models.models.Recipe(
+        recipe = models.Recipe(
             user=user,
             title="Simple Recipe Name",
             time_minutes=5,
@@ -77,7 +77,7 @@ class ModelTests(TestCase):
     def test_create_tag(self):
         """Test Create a tag is successfull"""
         user = create_user()
-        tag = models.models.Tag.objects.create(
+        tag = models.Tag.objects.create(
             user=user,
             name="TestTag1",
         )
@@ -87,7 +87,7 @@ class ModelTests(TestCase):
     def test_create_ingredient(self):
         """Test create an ingredient"""
         user = create_user()
-        ingredient = models.models.Ingredient.objects.create(
+        ingredient = models.Ingredient.objects.create(
             user=user,
             name="Ingredient1",
         )

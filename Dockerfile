@@ -28,7 +28,7 @@ RUN apk add --no-cache bash postgresql-client jpeg-dev libpq && \
         django-user && \
     mkdir -p /vol/web/media && \
     mkdir -p /vol/web/static && \
-    chown -P django-user:django-user /vol && \
+    chown -R django-user:django-user /vol && \
     chmod -R 755 /vol 
 
 # Activate venv as default
