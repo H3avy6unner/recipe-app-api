@@ -417,8 +417,8 @@ class PrivateRecipeTests(TestCase):
         r2 = create_recipe(user=self.user, title="Sample Recipe 2")
         in1 = Ingredient.objects.create(user=self.user, name="Ingredient1")
         in2 = Ingredient.objects.create(user=self.user, name="Ingredient2")
-        r1.tags.add(in1)
-        r2.tags.add(in2)
+        r1.ingredients.add(in1)
+        r2.ingredients.add(in2)
         r3 = create_recipe(user=self.user, title="Sample Recipe 3")
 
         params = {"ingredients": f"{in1.id},{in2.id}"}
@@ -458,9 +458,6 @@ class ImageUploadTests(TestCase):
             res = self.client.post(url, payload, format="multipart")
 
         self.recipe.refresh_from_db()
-        print(res.status_code)
-        print(res.data)
-        print(url)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertIn("image", res.data)
         self.assertTrue(os.path.exists(self.recipe.image.path))
